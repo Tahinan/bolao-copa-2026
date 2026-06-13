@@ -158,6 +158,37 @@ table {
 font-size: 12px;
 }
 
+details summary{
+cursor:pointer;
+font-weight:bold;
+padding:10px;
+}
+
+details[open] summary{
+margin-bottom:10px;
+}
+
+.pontos5{
+background:#d4edda;
+padding:8px;
+margin:4px 0;
+border-radius:5px;
+}
+
+.pontos3{
+background:#fff3cd;
+padding:8px;
+margin:4px 0;
+border-radius:5px;
+}
+
+.pontos0{
+background:#f8d7da;
+padding:8px;
+margin:4px 0;
+border-radius:5px;
+}
+
 }
 </style>
 </head>
@@ -706,20 +737,71 @@ let div = document.getElementById("jogosView");
 
 div.innerHTML = "";
 
-jogos.forEach(j => {
+jogos.forEach(jogo => {
 
 let resultado = "- x -";
 
-if(j.golsCasa !== null && j.golsFora !== null){
-resultado = `${j.golsCasa} x ${j.golsFora}`;
+if(jogo.golsCasa !== null){
+    resultado =
+    `${jogo.golsCasa} x ${jogo.golsFora}`;
 }
 
+let htmlPalpites = "";
+
+const lista = participantes.map(nome => ({
+    nome,
+    pontos: pontosDoJogo(nome,jogo.id),
+    palpite: palpites[nome]?.[jogo.id]
+}));
+
+lista.sort((a,b)=>b.pontos-a.pontos);
+
+lista.forEach(item => {
+
+    let classe = "pontos0";
+
+    if(item.pontos === 5)
+        classe = "pontos5";
+
+    if(item.pontos === 3)
+        classe = "pontos3";
+
+    if(item.palpite){
+
+        htmlPalpites += `
+        <div class="${classe}">
+            ${item.nome}
+            →
+            ${item.palpite.casa}
+            x
+            ${item.palpite.fora}
+            (${item.pontos} pts)
+        </div>
+        `;
+    }
+
+});
+
 div.innerHTML += `
-<div class="card">
 
-<h3>${j.casa} ${resultado} ${j.fora}</h3>
+<details class="card">
 
-</div>
+<summary>
+
+<strong>
+${jogo.casa}
+${resultado}
+${jogo.fora}
+</strong>
+
+</summary>
+
+<br>
+
+${htmlPalpites}
+
+</details>
+
 `;
 
 });
