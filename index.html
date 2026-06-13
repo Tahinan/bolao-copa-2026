@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Bolão Copa 2026</title>
+
+<style>
+body{font-family:Arial;margin:0;background:#f4f4f4}
+header{background:#0066cc;color:#fff;padding:15px;text-align:center}
+
+nav{
+display:flex;
+gap:10px;
+justify-content:center;
+background:#eee;
+padding:10px;
+}
+
+button{
+padding:10px;
+cursor:pointer;
+border:none;
+background:#0066cc;
+color:white;
+border-radius:5px;
+}
+
+.container{max-width:1000px;margin:auto;padding:15px}
+
+.card{
+background:white;
+padding:15px;
+margin-bottom:10px;
+border-radius:8px;
+}
+
+input,select{
+padding:5px;
+margin:3px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+text-align:center;
+}
+
+.pontos5{
+background:#d4edda;
+border-left:8px solid #28a745;
+}
+
+.pontos3{
+background:#fff3cd;
+border-left:8px solid #ffc107;
+}
+
+.pontos0{
+background:#f8d7da;
+border-left:8px solid #dc3545;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🏆 Bolão Copa 2026</h1>
+</header>
+
+<nav>
+<button onclick="mostrar('jogos')">Jogos</button>
+<button onclick="mostrar('palpites')">Palpites</button>
+<button onclick="mostrar('ranking')">Ranking</button>
+</nav>
+
+<div class="container">
+
+<!-- JOGOS -->
+<div id="jogosView"></div>
+
+<!-- PALPITES -->
+<div id="palpitesView" style="display:none">
+
+<h3>Selecione o jogo</h3>
+
+<select id="selectJogo" onchange="mostrarPalpites()"></select>
+
+<div id="listaPalpites"></div>
+
+</div>
+
+<!-- RANKING -->
+<div id="rankingView" style="display:none">
+
+<h2>🏆 Ranking</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Posição</th>
+<th>Participante</th>
+<th>Pontos</th>
+</tr>
+</thead>
+
+<tbody id="tabelaRanking">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+// 👥 PARTICIPANTES
+const participantes = [
+"Luis Carlos","Jonathas Seixas","Gleidson","Jhonata David",
+"Dedeco","Tahinan","Dedeco 2","Mayara","Daniel","Marcel",
+"Aislan","Fernando","Alisson","Rodrigues"
+];
+
+// ⚽ JOGOS
+const jogos = [
+{id:1,casa:"México",fora:"África do Sul", golsCasa:2,golsFora:0},
+{id:2,casa:"Coreia do Sul",fora:"Tchéquia",golsCasa:2,golsFora:1},
+{id:3,casa:"Canadá",fora:"Bósnia",golsCasa:1,golsFora:1},
+{id:4,casa:"EUA",fora:"Paraguai",golsCasa:null,golsFora:null},
+{id:5,casa:"Catar",fora:"Suíça",golsCasa:null,golsFora:null},
+{id:6,casa:"Brasil",fora:"Marrocos",golsCasa:null,golsFora:null},
+{id:7,casa:"Haiti",fora:"Escócia",golsCasa:null,golsFora:null},
+{id:8,casa:"Austrália",fora:"Turquia",golsCasa:null,golsFora:null},
+{id:9,casa:"Alemanha",fora:"Curaçao",golsCasa:null,golsFora:null},
+{id:10,casa:"Holanda",fora:"Japão",golsCasa:null,golsFora:null},
+{id:11,casa:"Costa do Marfim",fora:"Equador",golsCasa:null,golsFora:null},
+{id:12,casa:"Suécia",fora:"Tunísia",golsCasa:null,golsFora:null},
+{id:13,casa:"Espanha",fora:"Cabo Verde",golsCasa:null,golsFora:null},
+{id:14,casa:"Bélgica",fora:"Egito",golsCasa:null,golsFora:null},
+{id:15,casa:"Arábia Saudita",fora:"Uruguai",golsCasa:null,golsFora:null},
+{id:16,casa:"Irã",fora:"Nova Zelândia",golsCasa:null,golsFora:null},
+{id:17,casa:"França",fora:"Senegal",golsCasa:null,golsFora:null},
+{id:18,casa:"Iraque",fora:"Noruega",golsCasa:null,golsFora:null},
+{id:19,casa:"Argentina",fora:"Argélia",golsCasa:null,golsFora:null},
+{id:20,casa:"Áustria",fora:"Jordânia",golsCasa:null,golsFora:null},
+{id:21,casa:"Portugal",fora:"RD Congo",golsCasa:null,golsFora:null},
+{id:22,casa:"Inglaterra",fora:"Croácia",golsCasa:null,golsFora:null},
+{id:23,casa:"Gana",fora:"Panamá",golsCasa:null,golsFora:null},
+{id:24,casa:"Uzbequistão",fora:"Colômbia",golsCasa:null,golsFora:null}
+];
+
+// 👇 PALPITES (EDITA MANUALMENTE AQUI)
+
+
+
+const palpites = {
+
+"Luis Carlos":{
+1:{casa:1,fora:2},
+2:{casa:1,fora:2},
+3:{casa:3,fora:1},
+4:{casa:1,fora:2},
+5:{casa:1,fora:3},
+6:{casa:3,fora:1},
+7:{casa:1,fora:3},
+8:{casa:1,fora:2},
+9:{casa:4,fora:1},
+10:{casa:3,fora:1},
+11:{casa:1,fora:2},
+12:{casa:2,fora:1},
+13:{casa:4,fora:1},
+14:{casa:3,fora:1},
+15:{casa:1,fora:2},
+16:{casa:1,fora:2},
+17:{casa:4,fora:1},
+18:{casa:1,fora:2},
+19:{casa:3,fora:1},
+20:{casa:2,fora:1},
+21:{casa:3,fora:1},
+22:{casa:2,fora:1},
+23:{casa:3,fora:1},
+24:{casa:0,fora:2}
+},
+
+"Jonathas Seixas":{
+1:{casa:2,fora:0},
+2:{casa:1,fora:1},
+3:{casa:2,fora:1},
+4:{casa:2,fora:1},
+5:{casa:0,fora:2},
+6:{casa:2,fora:1},
+7:{casa:0,fora:2},
+8:{casa:1,fora:1},
+9:{casa:3,fora:0},
+10:{casa:2,fora:1},
+11:{casa:1,fora:1},
+12:{casa:1,fora:0},
+13:{casa:3,fora:0},
+14:{casa:2,fora:1},
+15:{casa:0,fora:2},
+16:{casa:2,fora:0},
+17:{casa:2,fora:1},
+18:{casa:1,fora:2},
+19:{casa:2,fora:0},
+20:{casa:1,fora:0},
+21:{casa:3,fora:0},
+22:{casa:2,fora:1},
+23:{casa:2,fora:1},
+24:{casa:1,fora:2}
+},
+
+"Gleidson":{
+1:{casa:2,fora:0},
+2:{casa:1,fora:0},
+3:{casa:1,fora:1},
+4:{casa:1,fora:2},
+5:{casa:0,fora:2},
+6:{casa:3,fora:0},
+7:{casa:0,fora:2},
+8:{casa:1,fora:3},
+9:{casa:4,fora:0},
+10:{casa:1,fora:0},
+11:{casa:3,fora:1},
+12:{casa:2,fora:0},
+13:{casa:3,fora:0},
+14:{casa:2,fora:1},
+15:{casa:0,fora:3},
+16:{casa:0,fora:1},
+17:{casa:2,fora:1},
+18:{casa:0,fora:1},
+19:{casa:2,fora:1},
+20:{casa:1,fora:1},
+21:{casa:4,fora:0},
+22:{casa:1,fora:0},
+23:{casa:2,fora:0},
+24:{casa:0,fora:2}
+},
+
+"Jhonata David":{
+1:{casa:0,fora:2},
+2:{casa:2,fora:1},
+3:{casa:1,fora:0},
+4:{casa:2,fora:2},
+5:{casa:0,fora:1},
+6:{casa:3,fora:1},
+7:{casa:0,fora:2},
+8:{casa:1,fora:1},
+9:{casa:4,fora:0},
+10:{casa:2,fora:1},
+11:{casa:2,fora:1},
+12:{casa:2,fora:2},
+13:{casa:5,fora:0},
+14:{casa:2,fora:0},
+15:{casa:1,fora:2},
+16:{casa:1,fora:0},
+17:{casa:3,fora:1},
+18:{casa:0,fora:2},
+19:{casa:2,fora:0},
+20:{casa:3,fora:0},
+21:{casa:2,fora:0},
+22:{casa:2,fora:1},
+23:{casa:3,fora:1},
+24:{casa:0,fora:4}
+},
+
+"Dedeco":{
+1:{casa:3,fora:1},
+2:{casa:1,fora:1},
+3:{casa:2,fora:1},
+4:{casa:1,fora:0},
+5:{casa:1,fora:2},
+6:{casa:2,fora:0},
+7:{casa:0,fora:2},
+8:{casa:1,fora:2},
+9:{casa:5,fora:0},
+10:{casa:1,fora:0},
+11:{casa:0,fora:1},
+12:{casa:1,fora:0},
+13:{casa:2,fora:0},
+14:{casa:1,fora:0},
+15:{casa:1,fora:2},
+16:{casa:2,fora:0},
+17:{casa:2,fora:0},
+18:{casa:1,fora:2},
+19:{casa:2,fora:0},
+20:{casa:1,fora:0},
+21:{casa:2,fora:0},
+22:{casa:1,fora:0},
+23:{casa:2,fora:0},
+24:{casa:0,fora:2}
+},
+
+"Tahinan":{
+1:{casa:2,fora:0},
+2:{casa:1,fora:1},
+3:{casa:1,fora:0},
+4:{casa:1,fora:3},
+5:{casa:0,fora:2},
+6:{casa:3,fora:1},
+7:{casa:1,fora:1},
+8:{casa:2,fora:0},
+9:{casa:4,fora:0},
+10:{casa:2,fora:2},
+11:{casa:1,fora:2},
+12:{casa:3,fora:1},
+13:{casa:3,fora:0},
+14:{casa:3,fora:2},
+15:{casa:1,fora:4},
+16:{casa:0,fora:0},
+17:{casa:3,fora:0},
+18:{casa:1,fora:1},
+19:{casa:2,fora:1},
+20:{casa:2,fora:2},
+21:{casa:1,fora:0},
+22:{casa:1,fora:2},
+23:{casa:2,fora:2},
+24:{casa:0,fora:3}
+},
+
+"Dedeco 2":{
+1:{casa:2,fora:0},
+2:{casa:1,fora:0},
+3:{casa:1,fora:2},
+4:{casa:1,fora:0},
+5:{casa:1,fora:2},
+6:{casa:2,fora:0},
+7:{casa:0,fora:3},
+8:{casa:1,fora:0},
+9:{casa:4,fora:0},
+10:{casa:0,fora:1},
+11:{casa:2,fora:1},
+12:{casa:2,fora:0},
+13:{casa:3,fora:0},
+14:{casa:2,fora:1},
+15:{casa:0,fora:1},
+16:{casa:0,fora:1},
+17:{casa:2,fora:0},
+18:{casa:1,fora:2},
+19:{casa:2,fora:0},
+20:{casa:1,fora:0},
+21:{casa:2,fora:0},
+22:{casa:1,fora:0},
+23:{casa:2,fora:0},
+24:{casa:0,fora:2}
+},
+
+"Mayara":{
+1:{casa:2,fora:1},
+2:{casa:1,fora:1},
+3:{casa:1,fora:1},
+4:{casa:2,fora:1},
+5:{casa:0,fora:2},
+6:{casa:3,fora:1},
+7:{casa:0,fora:3},
+8:{casa:1,fora:2},
+9:{casa:5,fora:0},
+10:{casa:3,fora:1},
+11:{casa:1,fora:1},
+12:{casa:2,fora:0},
+13:{casa:4,fora:0},
+14:{casa:1,fora:0},
+15:{casa:0,fora:2},
+16:{casa:1,fora:0},
+17:{casa:4,fora:0},
+18:{casa:0,fora:2},
+19:{casa:3,fora:0},
+20:{casa:1,fora:0},
+21:{casa:4,fora:0},
+22:{casa:2,fora:1},
+23:{casa:2,fora:0},
+24:{casa:1,fora:3}
+},
+
+"Daniel":{
+1:{casa:2,fora:1},
+2:{casa:2,fora:0},
+3:{casa:1,fora:0},
+4:{casa:3,fora:1},
+5:{casa:1,fora:2},
+6:{casa:2,fora:1},
+7:{casa:0,fora:2},
+8:{casa:1,fora:1},
+9:{casa:4,fora:0},
+10:{casa:1,fora:1},
+11:{casa:2,fora:0},
+12:{casa:2,fora:0},
+13:{casa:3,fora:0},
+14:{casa:2,fora:1},
+15:{casa:0,fora:1},
+16:{casa:0,fora:1},
+17:{casa:3,fora:0},
+18:{casa:0,fora:2},
+19:{casa:3,fora:1},
+20:{casa:2,fora:0},
+21:{casa:3,fora:1},
+22:{casa:2,fora:1},
+23:{casa:2,fora:0},
+24:{casa:0,fora:3}
+},
+
+"Marcel":{
+1:{casa:2,fora:0},
+2:{casa:1,fora:1},
+3:{casa:1,fora:1},
+4:{casa:2,fora:0},
+5:{casa:0,fora:1},
+6:{casa:2,fora:1},
+7:{casa:0,fora:2},
+8:{casa:1,fora:2},
+9:{casa:3,fora:0},
+10:{casa:3,fora:2},
+11:{casa:1,fora:1},
+12:{casa:2,fora:1},
+13:{casa:3,fora:0},
+14:{casa:3,fora:1},
+15:{casa:0,fora:1},
+16:{casa:1,fora:1},
+17:{casa:3,fora:1},
+18:{casa:0,fora:2},
+19:{casa:1,fora:0},
+20:{casa:1,fora:0},
+21:{casa:3,fora:1},
+22:{casa:2,fora:2},
+23:{casa:2,fora:1},
+24:{casa:0,fora:2}
+},
+
+"Aislan":{
+1:{casa:2,fora:1},
+2:{casa:1,fora:1},
+3:{casa:1,fora:0},
+4:{casa:1,fora:2},
+5:{casa:1,fora:1},
+6:{casa:2,fora:0},
+7:{casa:0,fora:0},
+8:{casa:0,fora:1},
+9:{casa:4,fora:0},
+10:{casa:2,fora:1},
+11:{casa:1,fora:2},
+12:{casa:1,fora:1},
+13:{casa:4,fora:0},
+14:{casa:3,fora:1},
+15:{casa:0,fora:2},
+16:{casa:1,fora:0},
+17:{casa:2,fora:1},
+18:{casa:1,fora:1},
+19:{casa:3,fora:0},
+20:{casa:0,fora:0},
+21:{casa:2,fora:0},
+22:{casa:2,fora:1},
+23:{casa:3,fora:1},
+24:{casa:0,fora:2}
+},
+
+"Fernando":{
+1:{casa:1,fora:0},
+2:{casa:1,fora:1},
+3:{casa:2,fora:0},
+4:{casa:0,fora:1},
+5:{casa:0,fora:2},
+6:{casa:1,fora:0},
+7:{casa:0,fora:2},
+8:{casa:0,fora:1},
+9:{casa:3,fora:0},
+10:{casa:2,fora:0},
+11:{casa:1,fora:1},
+12:{casa:2,fora:0},
+13:{casa:3,fora:0},
+14:{casa:2,fora:0},
+15:{casa:1,fora:2},
+16:{casa:1,fora:0},
+17:{casa:3,fora:1},
+18:{casa:2,fora:2},
+19:{casa:2,fora:0},
+20:{casa:1,fora:0},
+21:{casa:2,fora:0},
+22:{casa:1,fora:1},
+23:{casa:1,fora:0},
+24:{casa:0,fora:2}
+},
+
+"Alisson":{
+1:{casa:1,fora:1},
+2:{casa:0,fora:1},
+3:{casa:0,fora:0},
+4:{casa:0,fora:1},
+5:{casa:1,fora:2},
+6:{casa:2,fora:1},
+7:{casa:0,fora:2},
+8:{casa:1,fora:3},
+9:{casa:3,fora:0},
+10:{casa:3,fora:2},
+11:{casa:2,fora:0},
+12:{casa:1,fora:3},
+13:{casa:4,fora:0},
+14:{casa:3,fora:2},
+15:{casa:0,fora:2},
+16:{casa:0,fora:0},
+17:{casa:3,fora:1},
+18:{casa:1,fora:2},
+19:{casa:1,fora:0},
+20:{casa:0,fora:0},
+21:{casa:1,fora:0},
+22:{casa:2,fora:2},
+23:{casa:2,fora:0},
+24:{casa:0,fora:2}
+},
+
+"Rodrigues":{
+1:{casa:2,fora:0},
+2:{casa:2,fora:2},
+3:{casa:1,fora:1},
+4:{casa:2,fora:1},
+5:{casa:0,fora:1},
+6:{casa:1,fora:2},
+7:{casa:0,fora:3},
+8:{casa:1,fora:2},
+9:{casa:5,fora:0},
+10:{casa:2,fora:1},
+11:{casa:0,fora:0},
+12:{casa:2,fora:1},
+13:{casa:6,fora:0},
+14:{casa:2,fora:0},
+15:{casa:1,fora:2},
+16:{casa:1,fora:1},
+17:{casa:3,fora:1},
+18:{casa:0,fora:3},
+19:{casa:2,fora:0},
+20:{casa:1,fora:0},
+21:{casa:4,fora:1},
+22:{casa:2,fora:0},
+23:{casa:2,fora:2},
+24:{casa:0,fora:2}
+}
+
+};
+
+function calcularPontos(nome){
+
+let pontos = 0;
+
+jogos.forEach(jogo => {
+
+    // ignora jogos sem resultado
+    if(jogo.golsCasa === null || jogo.golsFora === null){
+        return;
+    }
+
+    const palpite = palpites[nome]?.[jogo.id];
+
+    // participante não palpitou
+    if(!palpite){
+        return;
+    }
+
+    // placar exato = 5 pontos
+    if(
+        palpite.casa === jogo.golsCasa &&
+        palpite.fora === jogo.golsFora
+    ){
+        pontos += 5;
+        return;
+    }
+
+    // vencedor correto = 3 pontos
+    const resultadoReal =
+        Math.sign(jogo.golsCasa - jogo.golsFora);
+
+    const resultadoPalpite =
+        Math.sign(palpite.casa - palpite.fora);
+
+    if(resultadoReal === resultadoPalpite){
+        pontos += 3;
+    }
+
+});
+
+return pontos;
+
+}
+
+function gerarRanking(){
+
+let ranking = participantes.map(nome => {
+
+    return {
+        nome: nome,
+        pontos: calcularPontos(nome)
+    };
+
+});
+
+ranking.sort((a,b) => b.pontos - a.pontos);
+
+return ranking;
+
+}
+
+// ========== JOGOS ==========
+function carregarJogos(){
+
+let div = document.getElementById("jogosView");
+
+div.innerHTML = "";
+
+jogos.forEach(j => {
+
+let resultado = "- x -";
+
+if(j.golsCasa !== null && j.golsFora !== null){
+resultado = `${j.golsCasa} x ${j.golsFora}`;
+}
+
+div.innerHTML += `
+<div class="card">
+
+<h3>${j.casa} ${resultado} ${j.fora}</h3>
+
+</div>
+`;
+
+});
+
+}
+
+function atualizarResultado(id, lado, valor){
+
+const jogo = jogos.find(j => j.id == id);
+
+if(!jogo) return;
+
+jogo[
+lado === "casa"
+? "golsCasa"
+: "golsFora"
+] = Number(valor);
+
+}
+
+// ========== SELECT DE JOGOS ==========
+function carregarSelect(){
+let select = document.getElementById("selectJogo");
+
+jogos.forEach(j => {
+select.innerHTML += `<option value="${j.id}">
+${j.casa} x ${j.fora}
+</option>`;
+});
+}
+
+// ========== MOSTRAR PALPITES ==========
+function mostrarPalpites(){
+
+let id = document.getElementById("selectJogo").value;
+
+let div = document.getElementById("listaPalpites");
+
+div.innerHTML = "";
+
+const lista = participantes.map(nome => ({
+    nome: nome,
+    pontos: pontosDoJogo(nome,id),
+    palpite: palpites[nome]?.[id]
+}));
+
+lista.sort((a,b)=>b.pontos-a.pontos);
+
+lista.forEach(item => {
+
+    let classe = "pontos0";
+
+    if(item.pontos === 5){
+        classe = "pontos5";
+    }
+    else if(item.pontos === 3){
+        classe = "pontos3";
+    }
+
+    if(item.palpite){
+
+        div.innerHTML += `
+        <div class="card ${classe}">
+            <strong>${item.nome}</strong>
+            → ${item.palpite.casa} x ${item.palpite.fora}
+            (${item.pontos} pts)
+        </div>
+        `;
+
+    } else {
+
+        div.innerHTML += `
+        <div class="card pontos0">
+            <strong>${item.nome}</strong>
+            → sem palpite
+        </div>
+        `;
+
+    }
+
+});
+
+}
+
+// ========== NAVEGAÇÃO ==========
+function mostrar(tela){
+
+document.getElementById("jogosView").style.display="none";
+document.getElementById("palpitesView").style.display="none";
+document.getElementById("rankingView").style.display="none";
+
+if(tela==="jogos"){
+document.getElementById("jogosView").style.display="block";
+}
+
+if(tela==="palpites"){
+document.getElementById("palpitesView").style.display="block";
+}
+
+if(tela==="ranking"){
+document.getElementById("rankingView").style.display="block";
+mostrarRanking();
+}
+
+}
+
+function mostrarRanking(){
+
+const tabela =
+document.getElementById("tabelaRanking");
+
+tabela.innerHTML = "";
+
+const ranking = gerarRanking();
+
+ranking.forEach((item,index)=>{
+
+tabela.innerHTML += `
+<tr>
+<td>${index+1}º</td>
+<td>${item.nome}</td>
+<td>${item.pontos}</td>
+</tr>
+`;
+
+});
+
+}
+
+function pontosDoJogo(nome, jogoId){
+
+    const jogo = jogos.find(j => j.id == jogoId);
+
+    if(!jogo) return 0;
+
+    if(jogo.golsCasa === null || jogo.golsFora === null){
+        return 0;
+    }
+
+    const palpite = palpites[nome]?.[jogoId];
+
+    if(!palpite){
+        return 0;
+    }
+
+    // Placar exato
+    if(
+        palpite.casa === jogo.golsCasa &&
+        palpite.fora === jogo.golsFora
+    ){
+        return 5;
+    }
+
+    // Resultado correto
+    const resultadoReal =
+        Math.sign(jogo.golsCasa - jogo.golsFora);
+
+    const resultadoPalpite =
+        Math.sign(palpite.casa - palpite.fora);
+
+    if(resultadoReal === resultadoPalpite){
+        return 3;
+    }
+
+    return 0;
+}
+
+
+
+// inicialização
+carregarJogos();
+carregarSelect();
+mostrar("jogos");
+
+</script>
+
+</body>
+</html>
