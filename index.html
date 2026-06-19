@@ -189,144 +189,12 @@ margin:4px 0;
 border-radius:5px;
 }
 
-.alerta-prazo{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-
-    background:linear-gradient(135deg,#fff3cd,#ffe69c);
-    border:3px solid #ffc107;
-    border-radius:12px;
-
-    padding:18px;
-    margin:20px auto;
-
-    box-shadow:0 4px 15px rgba(0,0,0,0.15);
-
-    animation:pulsar 2s infinite;
-}
-
-.alerta-icone{
-    font-size:40px;
-}
-
-.alerta-texto{
-    flex:1;
-}
-
-.alerta-texto strong{
-    display:block;
-    font-size:20px;
-    color:#856404;
-    margin-bottom:5px;
-}
-
-.alerta-texto span{
-    font-size:16px;
-    color:#5f4b00;
-}
-
-.btn-palpite{
-    background:#198754;
-    color:white;
-    text-decoration:none;
-
-    padding:12px 22px;
-    border-radius:8px;
-
-    font-weight:bold;
-    white-space:nowrap;
-
-    transition:0.3s;
-}
-
-.btn-palpite:hover{
-    transform:scale(1.05);
-}
-
-@keyframes pulsar{
-    0%{
-        box-shadow:0 0 0 rgba(255,193,7,0.5);
-    }
-
-    50%{
-        box-shadow:0 0 20px rgba(255,193,7,0.8);
-    }
-
-    100%{
-        box-shadow:0 0 0 rgba(255,193,7,0.5);
-    }
-}
-
-/* Responsivo para celular */
-@media (max-width: 768px){
-
-    .alerta-prazo{
-        flex-direction:column;
-        text-align:center;
-    }
-
-    .btn-palpite{
-        width:100%;
-    }
-}
-
-.status-palpites{
-    max-width:900px;
-    margin:20px auto;
-    padding:20px;
-
-    background:#e8f5e9;
-
-    border-left:6px solid #28a745;
-    border-radius:10px;
-}
-
-.status-palpites h3{
-    margin-top:0;
-    color:#155724;
-}
-
-.lista-enviados{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-.participante{
-    background:#28a745;
-    color:white;
-
-    padding:8px 12px;
-    border-radius:20px;
-
-    font-size:14px;
-    font-weight:bold;
-}    
-
 }
 </style>
 </head>
 
 <body>
 
-<div class="alerta-prazo">
-    <div class="alerta-icone">⏰</div>
-
-    <div class="alerta-texto">
-        <strong>Em breve 2° rodada atualizada aqui</strong>
-    </div>
-</div>
-
-<div class="status-palpites">
-
-    <h3>✅ Participantes que já enviaram os palpites da 2ª Rodada</h3>
-
-    <div id="listaEnviados" class="lista-enviados"></div>
-
-</div>    
-    
 <header>
 <h1>🏆 Bolão Copa CAIXA 2026</h1>
 </header>
@@ -382,36 +250,41 @@ border-radius:5px;
 // 👥 PARTICIPANTES
 const participantes = [
 "Luis Carlos","Jonathas Seixas","Gleidson","Jhonata Davison",
-"Dedeco","Tahinan","Dedeco 2","Mayara","Daniel","Marcel",
-"Aislan","Fernando","Alisson","Rodrigues"
+"Dedeco","Tahinan","Juninho","Mayara","Daniel","Marcel",
+"Aislan","Junior","Alisson","Rodrigues"
 ];
 
 // ⚽ JOGOS
 const jogos = [
-{id:1,casa:"México",fora:"África do Sul", golsCasa:2,golsFora:0},
-{id:2,casa:"Coreia do Sul",fora:"Tchéquia",golsCasa:2,golsFora:1},
-{id:3,casa:"Canadá",fora:"Bósnia",golsCasa:1,golsFora:1},
-{id:4,casa:"EUA",fora:"Paraguai",golsCasa:4,golsFora:1},
-{id:5,casa:"Catar",fora:"Suíça",golsCasa:1,golsFora:1},
-{id:6,casa:"Brasil",fora:"Marrocos",golsCasa:1,golsFora:1},
-{id:7,casa:"Haiti",fora:"Escócia",golsCasa:0,golsFora:1},
-{id:8,casa:"Austrália",fora:"Turquia",golsCasa:2,golsFora:0},
-{id:9,casa:"Alemanha",fora:"Curaçao",golsCasa:7,golsFora:1},
-{id:10,casa:"Holanda",fora:"Japão",golsCasa:2,golsFora:2},
-{id:11,casa:"Costa do Marfim",fora:"Equador",golsCasa:1,golsFora:0},
-{id:12,casa:"Suécia",fora:"Tunísia",golsCasa:5,golsFora:1},
-{id:13,casa:"Espanha",fora:"Cabo Verde",golsCasa:0,golsFora:0},
-{id:14,casa:"Bélgica",fora:"Egito",golsCasa:1,golsFora:1},
-{id:15,casa:"Arábia Saudita",fora:"Uruguai",golsCasa:1,golsFora:1},
-{id:16,casa:"Irã",fora:"Nova Zelândia",golsCasa:2,golsFora:2},
-{id:17,casa:"França",fora:"Senegal",golsCasa:3,golsFora:1},
-{id:18,casa:"Iraque",fora:"Noruega",golsCasa:1,golsFora:4},
-{id:19,casa:"Argentina",fora:"Argélia",golsCasa:3,golsFora:0},
-{id:20,casa:"Áustria",fora:"Jordânia",golsCasa:3,golsFora:1},
-{id:21,casa:"Portugal",fora:"RD Congo",golsCasa:1,golsFora:1},
-{id:22,casa:"Inglaterra",fora:"Croácia",golsCasa:4,golsFora:2},
-{id:23,casa:"Gana",fora:"Panamá",golsCasa:1,golsFora:0},
-{id:24,casa:"Uzbequistão",fora:"Colômbia",golsCasa:1,golsFora:3}
+{id:1,casa:"Tchéquia",fora:"África do Sul",golsCasa:null,golsFora:null},
+{id:2,casa:"Suíça",fora:"Bósnia",golsCasa:null,golsFora:null},
+{id:3,casa:"Canadá",fora:"Catar",golsCasa:null,golsFora:null},
+{id:4,casa:"México",fora:"Coreia do Sul",golsCasa:null,golsFora:null},
+
+{id:5,casa:"Estados Unidos",fora:"Austrália",golsCasa:null,golsFora:null},
+{id:6,casa:"Escócia",fora:"Marrocos",golsCasa:null,golsFora:null},
+{id:7,casa:"Brasil",fora:"Haiti",golsCasa:null,golsFora:null},
+{id:8,casa:"Turquia",fora:"Paraguai",golsCasa:null,golsFora:null},
+
+{id:9,casa:"Holanda",fora:"Suécia",golsCasa:null,golsFora:null},
+{id:10,casa:"Alemanha",fora:"Costa do Marfim",golsCasa:null,golsFora:null},
+{id:11,casa:"Equador",fora:"Curaçao",golsCasa:null,golsFora:null},
+{id:12,casa:"Tunísia",fora:"Japão",golsCasa:null,golsFora:null},
+
+{id:13,casa:"Espanha",fora:"Arábia Saudita",golsCasa:null,golsFora:null},
+{id:14,casa:"Bélgica",fora:"Irã",golsCasa:null,golsFora:null},
+{id:15,casa:"Uruguai",fora:"Cabo Verde",golsCasa:null,golsFora:null},
+{id:16,casa:"Nova Zelândia",fora:"Egito",golsCasa:null,golsFora:null},
+
+{id:17,casa:"Argentina",fora:"Áustria",golsCasa:null,golsFora:null},
+{id:18,casa:"França",fora:"Iraque",golsCasa:null,golsFora:null},
+{id:19,casa:"Noruega",fora:"Senegal",golsCasa:null,golsFora:null},
+{id:20,casa:"Jordânia",fora:"Argélia",golsCasa:null,golsFora:null},
+
+{id:21,casa:"Portugal",fora:"Uzbequistão",golsCasa:null,golsFora:null},
+{id:22,casa:"Inglaterra",fora:"Gana",golsCasa:null,golsFora:null},
+{id:23,casa:"Panamá",fora:"Croácia",golsCasa:null,golsFora:null},
+{id:24,casa:"Colômbia",fora:"RD Congo",golsCasa:null,golsFora:null}
 ];
 
 // 👇 PALPITES (EDITA MANUALMENTE AQUI)
@@ -422,422 +295,383 @@ const palpites = {
 
 "Luis Carlos":{
 1:{casa:1,fora:2},
-2:{casa:1,fora:2},
-3:{casa:3,fora:1},
+2:{casa:2,fora:0},
+3:{casa:1,fora:2},
 4:{casa:1,fora:2},
-5:{casa:1,fora:3},
-6:{casa:3,fora:1},
-7:{casa:1,fora:3},
-8:{casa:1,fora:2},
-9:{casa:4,fora:1},
+5:{casa:3,fora:1},
+6:{casa:1,fora:3},
+7:{casa:3,fora:1},
+8:{casa:2,fora:1},
+9:{casa:3,fora:1},
 10:{casa:3,fora:1},
-11:{casa:1,fora:2},
-12:{casa:2,fora:1},
-13:{casa:4,fora:1},
-14:{casa:3,fora:1},
-15:{casa:1,fora:2},
+11:{casa:3,fora:0},
+12:{casa:1,fora:2},
+13:{casa:3,fora:1},
+14:{casa:2,fora:1},
+15:{casa:3,fora:1},
 16:{casa:1,fora:2},
-17:{casa:4,fora:1},
-18:{casa:1,fora:2},
-19:{casa:3,fora:1},
-20:{casa:2,fora:1},
+17:{casa:3,fora:1},
+18:{casa:3,fora:0},
+19:{casa:1,fora:3},
+20:{casa:1,fora:2},
 21:{casa:3,fora:1},
-22:{casa:2,fora:1},
-23:{casa:3,fora:1},
-24:{casa:0,fora:2}
+22:{casa:3,fora:0},
+23:{casa:1,fora:3},
+24:{casa:3,fora:1}
 },
 
 "Jonathas Seixas":{
-1:{casa:2,fora:0},
-2:{casa:1,fora:1},
-3:{casa:2,fora:1},
-4:{casa:2,fora:1},
-5:{casa:0,fora:2},
-6:{casa:2,fora:1},
-7:{casa:0,fora:2},
-8:{casa:1,fora:1},
-9:{casa:3,fora:0},
-10:{casa:2,fora:1},
-11:{casa:1,fora:1},
-12:{casa:1,fora:0},
-13:{casa:3,fora:0},
-14:{casa:2,fora:1},
-15:{casa:0,fora:2},
-16:{casa:2,fora:0},
-17:{casa:2,fora:1},
-18:{casa:1,fora:2},
-19:{casa:2,fora:0},
-20:{casa:1,fora:0},
-21:{casa:3,fora:0},
-22:{casa:2,fora:1},
-23:{casa:2,fora:1},
-24:{casa:1,fora:2}
+1:{casa:1,fora:2},
+2:{casa:2,fora:0},
+3:{casa:1,fora:1},
+4:{casa:2,fora:0},
+5:{casa:2,fora:1},
+6:{casa:0,fora:2},
+7:{casa:5,fora:0},
+8:{casa:0,fora:1},
+9:{casa:2,fora:0},
+10:{casa:3,fora:0},
+11:{casa:1,fora:0},
+12:{casa:0,fora:3},
+13:{casa:2,fora:0},
+14:{casa:1,fora:0},
+15:{casa:2,fora:0},
+16:{casa:1,fora:1},
+17:{casa:1,fora:0},
+18:{casa:4,fora:0},
+19:{casa:1,fora:0},
+20:{casa:1,fora:1},
+21:{casa:1,fora:0},
+22:{casa:3,fora:0},
+23:{casa:0,fora:5},
+24:{casa:2,fora:0}
 },
 
 "Gleidson":{
-1:{casa:2,fora:0},
-2:{casa:1,fora:0},
-3:{casa:1,fora:1},
-4:{casa:1,fora:2},
-5:{casa:0,fora:2},
-6:{casa:3,fora:0},
-7:{casa:0,fora:2},
-8:{casa:1,fora:3},
-9:{casa:4,fora:0},
-10:{casa:1,fora:0},
-11:{casa:3,fora:1},
-12:{casa:2,fora:0},
-13:{casa:3,fora:0},
-14:{casa:2,fora:1},
-15:{casa:0,fora:3},
-16:{casa:0,fora:1},
-17:{casa:2,fora:1},
-18:{casa:0,fora:1},
-19:{casa:2,fora:1},
-20:{casa:1,fora:1},
-21:{casa:4,fora:0},
-22:{casa:1,fora:0},
-23:{casa:2,fora:0},
-24:{casa:0,fora:2}
+1:{casa:0,fora:1},
+2:{casa:1,fora:1},
+3:{casa:1,fora:0},
+4:{casa:1,fora:0},
+5:{casa:1,fora:0},
+6:{casa:0,fora:1},
+7:{casa:3,fora:0},
+8:{casa:1,fora:2},
+9:{casa:2,fora:2},
+10:{casa:2,fora:0},
+11:{casa:3,fora:0},
+12:{casa:1,fora:2},
+13:{casa:2,fora:0},
+14:{casa:2,fora:0},
+15:{casa:2,fora:0},
+16:{casa:1,fora:0},
+17:{casa:2,fora:0},
+18:{casa:4,fora:1},
+19:{casa:2,fora:2},
+20:{casa:1,fora:2},
+21:{casa:3,fora:0},
+22:{casa:2,fora:0},
+23:{casa:0,fora:2},
+24:{casa:2,fora:0}
 },
 
 "Jhonata Davison":{
-1:{casa:0,fora:2},
+1:{casa:1,fora:2},
 2:{casa:2,fora:1},
-3:{casa:1,fora:0},
-4:{casa:2,fora:2},
-5:{casa:0,fora:1},
-6:{casa:3,fora:1},
-7:{casa:0,fora:2},
-8:{casa:1,fora:1},
-9:{casa:4,fora:0},
-10:{casa:2,fora:1},
-11:{casa:2,fora:1},
-12:{casa:2,fora:2},
-13:{casa:5,fora:0},
+3:{casa:2,fora:0},
+4:{casa:1,fora:2},
+5:{casa:2,fora:1},
+6:{casa:0,fora:2},
+7:{casa:2,fora:0},
+8:{casa:1,fora:2},
+9:{casa:2,fora:0},
+10:{casa:3,fora:0},
+11:{casa:2,fora:0},
+12:{casa:0,fora:2},
+13:{casa:2,fora:1},
 14:{casa:2,fora:0},
-15:{casa:1,fora:2},
-16:{casa:1,fora:0},
-17:{casa:3,fora:1},
-18:{casa:0,fora:2},
+15:{casa:2,fora:1},
+16:{casa:0,fora:2},
+17:{casa:3,fora:0},
+18:{casa:3,fora:0},
 19:{casa:2,fora:0},
-20:{casa:3,fora:0},
-21:{casa:2,fora:0},
-22:{casa:2,fora:1},
-23:{casa:3,fora:1},
-24:{casa:0,fora:4}
+20:{casa:1,fora:2},
+21:{casa:2,fora:1},
+22:{casa:3,fora:0},
+23:{casa:0,fora:2},
+24:{casa:2,fora:0}
 },
 
 "Dedeco":{
-1:{casa:3,fora:1},
-2:{casa:1,fora:1},
-3:{casa:2,fora:1},
-4:{casa:1,fora:0},
-5:{casa:1,fora:2},
-6:{casa:2,fora:0},
-7:{casa:0,fora:2},
-8:{casa:1,fora:2},
-9:{casa:5,fora:0},
-10:{casa:1,fora:0},
-11:{casa:0,fora:1},
-12:{casa:1,fora:0},
-13:{casa:2,fora:0},
-14:{casa:1,fora:0},
-15:{casa:1,fora:2},
-16:{casa:2,fora:0},
-17:{casa:2,fora:0},
-18:{casa:1,fora:2},
-19:{casa:2,fora:0},
-20:{casa:1,fora:0},
-21:{casa:2,fora:0},
-22:{casa:1,fora:0},
-23:{casa:2,fora:0},
-24:{casa:0,fora:2}
+1:{casa:3,fora:0},
+2:{casa:1,fora:0},
+3:{casa:2,fora:0},
+4:{casa:3,fora:0},
+5:{casa:2,fora:2},
+6:{casa:1,fora:1},
+7:{casa:2,fora:0},
+8:{casa:1,fora:1},
+9:{casa:2,fora:2},
+10:{casa:2,fora:0},
+11:{casa:1,fora:0},
+12:{casa:0,fora:0},
+13:{casa:1,fora:0},
+14:{casa:2,fora:0},
+15:{casa:1,fora:0},
+16:{casa:0,fora:0},
+17:{casa:2,fora:2},
+18:{casa:3,fora:0},
+19:{casa:0,fora:0},
+20:{casa:0,fora:1},
+21:{casa:2,fora:1},
+22:{casa:2,fora:0},
+23:{casa:1,fora:0},
+24:{casa:2,fora:0}
 },
 
 "Tahinan":{
-1:{casa:2,fora:0},
-2:{casa:1,fora:1},
+1:{casa:1,fora:0},
+2:{casa:2,fora:0},
 3:{casa:1,fora:0},
-4:{casa:1,fora:3},
-5:{casa:0,fora:2},
-6:{casa:3,fora:1},
-7:{casa:1,fora:1},
-8:{casa:2,fora:0},
-9:{casa:4,fora:0},
-10:{casa:2,fora:2},
-11:{casa:1,fora:2},
-12:{casa:3,fora:1},
-13:{casa:3,fora:0},
-14:{casa:3,fora:2},
-15:{casa:1,fora:4},
-16:{casa:0,fora:0},
-17:{casa:3,fora:0},
-18:{casa:1,fora:1},
-19:{casa:2,fora:1},
-20:{casa:2,fora:2},
-21:{casa:1,fora:0},
-22:{casa:1,fora:2},
-23:{casa:2,fora:2},
-24:{casa:0,fora:3}
-},
-
-"Dedeco 2":{
-1:{casa:2,fora:0},
-2:{casa:1,fora:0},
-3:{casa:1,fora:2},
-4:{casa:1,fora:0},
-5:{casa:1,fora:2},
-6:{casa:2,fora:0},
-7:{casa:0,fora:3},
-8:{casa:1,fora:0},
-9:{casa:4,fora:0},
-10:{casa:0,fora:1},
-11:{casa:2,fora:1},
-12:{casa:2,fora:0},
-13:{casa:3,fora:0},
-14:{casa:2,fora:1},
-15:{casa:0,fora:1},
+4:{casa:3,fora:1},
+5:{casa:3,fora:0},
+6:{casa:2,fora:2},
+7:{casa:4,fora:0},
+8:{casa:0,fora:1},
+9:{casa:0,fora:0},
+10:{casa:1,fora:0},
+11:{casa:1,fora:0},
+12:{casa:0,fora:3},
+13:{casa:2,fora:1},
+14:{casa:2,fora:0},
+15:{casa:2,fora:0},
 16:{casa:0,fora:1},
 17:{casa:2,fora:0},
-18:{casa:1,fora:2},
-19:{casa:2,fora:0},
+18:{casa:4,fora:0},
+19:{casa:1,fora:1},
+20:{casa:0,fora:2},
+21:{casa:2,fora:1},
+22:{casa:3,fora:0},
+23:{casa:0,fora:2},
+24:{casa:1,fora:0}
+},
+
+"Juninho":{
+1:{casa:0,fora:1},
+2:{casa:1,fora:0},
+3:{casa:1,fora:1},
+4:{casa:2,fora:1},
+5:{casa:2,fora:1},
+6:{casa:2,fora:1},
+7:{casa:3,fora:1},
+8:{casa:1,fora:1},
+9:{casa:1,fora:2},
+10:{casa:3,fora:1},
+11:{casa:1,fora:1},
+12:{casa:1,fora:2},
+13:{casa:2,fora:1},
+14:{casa:1,fora:1},
+15:{casa:2,fora:1},
+16:{casa:1,fora:1},
+17:{casa:4,fora:2},
+18:{casa:3,fora:1},
+19:{casa:2,fora:1},
 20:{casa:1,fora:0},
-21:{casa:2,fora:0},
-22:{casa:1,fora:0},
-23:{casa:2,fora:0},
-24:{casa:0,fora:2}
+21:{casa:1,fora:0},
+22:{casa:3,fora:1},
+23:{casa:0,fora:2},
+24:{casa:1,fora:0}
 },
 
 "Mayara":{
-1:{casa:2,fora:1},
-2:{casa:1,fora:1},
-3:{casa:1,fora:1},
+1:{casa:1,fora:1},
+2:{casa:2,fora:0},
+3:{casa:1,fora:0},
 4:{casa:2,fora:1},
-5:{casa:0,fora:2},
-6:{casa:3,fora:1},
-7:{casa:0,fora:3},
-8:{casa:1,fora:2},
-9:{casa:5,fora:0},
+5:{casa:2,fora:0},
+6:{casa:0,fora:4},
+7:{casa:4,fora:0},
+8:{casa:1,fora:1},
+9:{casa:2,fora:1},
 10:{casa:3,fora:1},
-11:{casa:1,fora:1},
-12:{casa:2,fora:0},
-13:{casa:4,fora:0},
-14:{casa:1,fora:0},
-15:{casa:0,fora:2},
-16:{casa:1,fora:0},
-17:{casa:4,fora:0},
-18:{casa:0,fora:2},
-19:{casa:3,fora:0},
-20:{casa:1,fora:0},
-21:{casa:4,fora:0},
-22:{casa:2,fora:1},
-23:{casa:2,fora:0},
-24:{casa:1,fora:3}
+11:{casa:3,fora:1},
+12:{casa:1,fora:2},
+13:{casa:3,fora:0},
+14:{casa:2,fora:0},
+15:{casa:2,fora:0},
+16:{casa:0,fora:2},
+17:{casa:2,fora:0},
+18:{casa:3,fora:0},
+19:{casa:2,fora:1},
+20:{casa:1,fora:1},
+21:{casa:2,fora:0},
+22:{casa:2,fora:0},
+23:{casa:0,fora:3},
+24:{casa:2,fora:0}
 },
 
 "Daniel":{
 1:{casa:2,fora:1},
 2:{casa:2,fora:0},
-3:{casa:1,fora:0},
-4:{casa:3,fora:1},
-5:{casa:1,fora:2},
-6:{casa:2,fora:1},
-7:{casa:0,fora:2},
+3:{casa:0,fora:0},
+4:{casa:2,fora:1},
+5:{casa:1,fora:0},
+6:{casa:0,fora:2},
+7:{casa:3,fora:0},
 8:{casa:1,fora:1},
-9:{casa:4,fora:0},
-10:{casa:1,fora:1},
-11:{casa:2,fora:0},
-12:{casa:2,fora:0},
-13:{casa:3,fora:0},
-14:{casa:2,fora:1},
-15:{casa:0,fora:1},
+9:{casa:2,fora:1},
+10:{casa:3,fora:1},
+11:{casa:3,fora:0},
+12:{casa:0,fora:2},
+13:{casa:4,fora:0},
+14:{casa:2,fora:0},
+15:{casa:2,fora:1},
 16:{casa:0,fora:1},
-17:{casa:3,fora:0},
-18:{casa:0,fora:2},
-19:{casa:3,fora:1},
-20:{casa:2,fora:0},
-21:{casa:3,fora:1},
-22:{casa:2,fora:1},
-23:{casa:2,fora:0},
-24:{casa:0,fora:3}
+17:{casa:2,fora:0},
+18:{casa:5,fora:0},
+19:{casa:2,fora:2},
+20:{casa:0,fora:1},
+21:{casa:3,fora:0},
+22:{casa:3,fora:1},
+23:{casa:0,fora:2},
+24:{casa:2,fora:0}
 },
 
 "Marcel":{
-1:{casa:2,fora:0},
-2:{casa:1,fora:1},
-3:{casa:1,fora:1},
-4:{casa:2,fora:0},
-5:{casa:0,fora:1},
-6:{casa:2,fora:1},
-7:{casa:0,fora:2},
-8:{casa:1,fora:2},
-9:{casa:3,fora:0},
-10:{casa:3,fora:2},
-11:{casa:1,fora:1},
-12:{casa:2,fora:1},
-13:{casa:3,fora:0},
-14:{casa:3,fora:1},
-15:{casa:0,fora:1},
-16:{casa:1,fora:1},
-17:{casa:3,fora:1},
-18:{casa:0,fora:2},
-19:{casa:1,fora:0},
-20:{casa:1,fora:0},
-21:{casa:3,fora:1},
-22:{casa:2,fora:2},
-23:{casa:2,fora:1},
-24:{casa:0,fora:2}
+1:{casa:1,fora:1},
+2:{casa:2,fora:0},
+3:{casa:2,fora:1},
+4:{casa:1,fora:1},
+5:{casa:2,fora:1},
+6:{casa:0,fora:1},
+7:{casa:3,fora:0},
+8:{casa:2,fora:1},
+9:{casa:2,fora:1},
+10:{casa:2,fora:0},
+11:{casa:3,fora:1},
+12:{casa:0,fora:2},
+13:{casa:4,fora:1},
+14:{casa:2,fora:0},
+15:{casa:2,fora:1},
+16:{casa:0,fora:1},
+17:{casa:1,fora:1},
+18:{casa:4,fora:0},
+19:{casa:2,fora:1},
+20:{casa:1,fora:1},
+21:{casa:3,fora:0},
+22:{casa:2,fora:1},
+23:{casa:0,fora:1},
+24:{casa:3,fora:1}
 },
 
 "Aislan":{
 1:{casa:2,fora:1},
-2:{casa:1,fora:1},
-3:{casa:1,fora:0},
-4:{casa:1,fora:2},
+2:{casa:2,fora:1},
+3:{casa:2,fora:1},
+4:{casa:2,fora:1},
 5:{casa:1,fora:1},
-6:{casa:2,fora:0},
-7:{casa:0,fora:0},
-8:{casa:0,fora:1},
-9:{casa:4,fora:0},
-10:{casa:2,fora:1},
-11:{casa:1,fora:2},
-12:{casa:1,fora:1},
-13:{casa:4,fora:0},
-14:{casa:3,fora:1},
-15:{casa:0,fora:2},
-16:{casa:1,fora:0},
-17:{casa:2,fora:1},
-18:{casa:1,fora:1},
-19:{casa:3,fora:0},
-20:{casa:0,fora:0},
+6:{casa:2,fora:1},
+7:{casa:3,fora:0},
+8:{casa:2,fora:1},
+9:{casa:2,fora:0},
+10:{casa:3,fora:1},
+11:{casa:3,fora:0},
+12:{casa:2,fora:1},
+13:{casa:3,fora:0},
+14:{casa:3,fora:0},
+15:{casa:3,fora:0},
+16:{casa:2,fora:1},
+17:{casa:3,fora:0},
+18:{casa:3,fora:0},
+19:{casa:3,fora:1},
+20:{casa:2,fora:0},
 21:{casa:2,fora:0},
-22:{casa:2,fora:1},
-23:{casa:3,fora:1},
-24:{casa:0,fora:2}
+22:{casa:3,fora:1},
+23:{casa:2,fora:0},
+24:{casa:2,fora:0}
 },
 
-"Fernando":{
-1:{casa:1,fora:0},
-2:{casa:1,fora:1},
+"Junior":{
+1:{casa:1,fora:2},
+2:{casa:3,fora:1},
 3:{casa:2,fora:0},
-4:{casa:0,fora:1},
-5:{casa:0,fora:2},
-6:{casa:1,fora:0},
-7:{casa:0,fora:2},
-8:{casa:0,fora:1},
-9:{casa:3,fora:0},
-10:{casa:2,fora:0},
-11:{casa:1,fora:1},
-12:{casa:2,fora:0},
-13:{casa:3,fora:0},
-14:{casa:2,fora:0},
-15:{casa:1,fora:2},
-16:{casa:1,fora:0},
+4:{casa:2,fora:2},
+5:{casa:3,fora:1},
+6:{casa:0,fora:2},
+7:{casa:3,fora:0},
+8:{casa:2,fora:1},
+9:{casa:3,fora:1},
+10:{casa:3,fora:1},
+11:{casa:3,fora:0},
+12:{casa:0,fora:2},
+13:{casa:2,fora:1},
+14:{casa:2,fora:1},
+15:{casa:2,fora:0},
+16:{casa:1,fora:3},
 17:{casa:3,fora:1},
-18:{casa:2,fora:2},
-19:{casa:2,fora:0},
-20:{casa:1,fora:0},
-21:{casa:2,fora:0},
-22:{casa:1,fora:1},
-23:{casa:1,fora:0},
-24:{casa:0,fora:2}
+18:{casa:3,fora:0},
+19:{casa:2,fora:1},
+20:{casa:1,fora:1},
+21:{casa:3,fora:0},
+22:{casa:3,fora:0},
+23:{casa:0,fora:3},
+24:{casa:2,fora:1}
 },
 
 "Alisson":{
-1:{casa:1,fora:1},
-2:{casa:0,fora:1},
-3:{casa:0,fora:0},
-4:{casa:0,fora:1},
-5:{casa:1,fora:2},
-6:{casa:2,fora:1},
-7:{casa:0,fora:2},
-8:{casa:1,fora:3},
-9:{casa:3,fora:0},
-10:{casa:3,fora:2},
-11:{casa:2,fora:0},
-12:{casa:1,fora:3},
-13:{casa:4,fora:0},
-14:{casa:3,fora:2},
-15:{casa:0,fora:2},
-16:{casa:0,fora:0},
-17:{casa:3,fora:1},
-18:{casa:1,fora:2},
-19:{casa:1,fora:0},
-20:{casa:0,fora:0},
-21:{casa:1,fora:0},
-22:{casa:2,fora:2},
-23:{casa:2,fora:0},
-24:{casa:0,fora:2}
+1:{casa:0,fora:0},
+2:{casa:2,fora:0},
+3:{casa:1,fora:0},
+4:{casa:2,fora:0},
+5:{casa:2,fora:1},
+6:{casa:0,fora:3},
+7:{casa:4,fora:0},
+8:{casa:0,fora:2},
+9:{casa:3,fora:1},
+10:{casa:2,fora:3},
+11:{casa:3,fora:0},
+12:{casa:0,fora:2},
+13:{casa:3,fora:1},
+14:{casa:2,fora:1},
+15:{casa:4,fora:1},
+16:{casa:2,fora:2},
+17:{casa:2,fora:0},
+18:{casa:4,fora:0},
+19:{casa:3,fora:2},
+20:{casa:1,fora:2},
+21:{casa:3,fora:0},
+22:{casa:3,fora:2},
+23:{casa:0,fora:4},
+24:{casa:2,fora:1}
 },
 
 "Rodrigues":{
 1:{casa:2,fora:0},
-2:{casa:2,fora:2},
-3:{casa:1,fora:1},
-4:{casa:2,fora:1},
-5:{casa:0,fora:1},
-6:{casa:1,fora:2},
-7:{casa:0,fora:3},
-8:{casa:1,fora:2},
-9:{casa:5,fora:0},
-10:{casa:2,fora:1},
-11:{casa:0,fora:0},
-12:{casa:2,fora:1},
-13:{casa:6,fora:0},
+2:{casa:1,fora:1},
+3:{casa:2,fora:0},
+4:{casa:1,fora:1},
+5:{casa:2,fora:0},
+6:{casa:0,fora:3},
+7:{casa:3,fora:1},
+8:{casa:0,fora:0},
+9:{casa:1,fora:2},
+10:{casa:1,fora:1},
+11:{casa:2,fora:0},
+12:{casa:0,fora:3},
+13:{casa:4,fora:1},
 14:{casa:2,fora:0},
-15:{casa:1,fora:2},
-16:{casa:1,fora:1},
-17:{casa:3,fora:1},
-18:{casa:0,fora:3},
-19:{casa:2,fora:0},
-20:{casa:1,fora:0},
-21:{casa:4,fora:1},
-22:{casa:2,fora:0},
-23:{casa:2,fora:2},
-24:{casa:0,fora:2}
+15:{casa:2,fora:1},
+16:{casa:1,fora:2},
+17:{casa:2,fora:0},
+18:{casa:5,fora:0},
+19:{casa:2,fora:2},
+20:{casa:0,fora:2},
+21:{casa:4,fora:0},
+22:{casa:3,fora:1},
+23:{casa:0,fora:2},
+24:{casa:2,fora:1}
 }
 
 };
-
-//enviou palpite
-const enviados = [
-    "Marcel",
-    "Gleidson",
-    "Tahinan",
-    "Juninho",
-    "Mayara",
-    "Luis Carlos",
-    "Aislan",
-    "Jhonata Davison",
-    "Daniel",
-    "Dedeco",
-    "Rodrigues",
-    "Alisson",
-    "Junior",
-    "Jhonatas Seixas"
-];
-
-function atualizarParticipantesEnviados(){
-
-    const lista =
-        document.getElementById("listaEnviados");
-
-    lista.innerHTML = "";
-
-    enviados.forEach(nome => {
-
-        lista.innerHTML += `
-            <span class="participante enviado">
-                ${nome}
-            </span>
-        `;
-
-    });
-
-}
-
-atualizarParticipantesEnviados();    
 
 function calcularPontos(nome){
 
