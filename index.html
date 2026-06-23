@@ -190,11 +190,110 @@ border-radius:5px;
 }
 
 }
+
+.alerta-prazo{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+
+    background:linear-gradient(135deg,#fff3cd,#ffe69c);
+    border:3px solid #ffc107;
+    border-radius:12px;
+
+    padding:18px;
+    margin:20px auto;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.15);
+
+    animation:pulsar 2s infinite;
+}
+
+.alerta-icone{
+    font-size:40px;
+}
+
+.alerta-texto{
+    flex:1;
+}
+
+.alerta-texto strong{
+    display:block;
+    font-size:20px;
+    color:#856404;
+    margin-bottom:5px;
+}
+
+.alerta-texto span{
+    font-size:16px;
+    color:#5f4b00;
+}
+
+.btn-palpite{
+    background:#198754;
+    color:white;
+    text-decoration:none;
+
+    padding:12px 22px;
+    border-radius:8px;
+
+    font-weight:bold;
+    white-space:nowrap;
+
+    transition:0.3s;
+}
+
+.btn-palpite:hover{
+    transform:scale(1.05);
+}
+
+@keyframes pulsar{
+    0%{
+        box-shadow:0 0 0 rgba(255,193,7,0.5);
+    }
+
+    50%{
+        box-shadow:0 0 20px rgba(255,193,7,0.8);
+    }
+
+    100%{
+        box-shadow:0 0 0 rgba(255,193,7,0.5);
+    }
+}
+
+/* Responsivo para celular */
+@media (max-width: 768px){
+
+    .alerta-prazo{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .btn-palpite{
+        width:100%;
+    }
+}
+    
 </style>
 </head>
 
 <body>
 
+
+<div class="alerta-prazo">
+    <div class="alerta-icone">⏰</div>
+
+    <div class="alerta-texto">
+        <strong>Prazo para envio dos palpites</strong>
+        <span>Os palpites da 3ª rodada encerram em <b>24/06/2026 às 12:00</b>.</span>
+    </div>
+
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVkSuo_C5OfAMwT_hKupCIpq85DSYxJbqx3-2GLfKdlODqZQ/viewform?usp=publish-editor" target="_blank" class="btn-palpite">
+        ⚽ Enviar Palpite
+    </a>
+</div>
+
+    
 <header>
 <h1>🏆 Bolão Copa CAIXA 2026</h1>
 <h2>🏆 Segunda Rodada</h2>
