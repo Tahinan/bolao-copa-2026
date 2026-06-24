@@ -273,6 +273,41 @@ border-radius:5px;
         width:100%;
     }
 }
+
+.status-palpites{
+    max-width:900px;
+    margin:20px auto;
+    padding:20px;
+
+    background:#e8f5e9;
+
+    border-left:6px solid #28a745;
+    border-radius:10px;
+}
+
+.status-palpites h3{
+    margin-top:0;
+    color:#155724;
+}
+
+.lista-enviados{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.participante{
+    background:#28a745;
+    color:white;
+
+    padding:8px 12px;
+    border-radius:20px;
+
+    font-size:14px;
+    font-weight:bold;
+}    
+
+}    
     
 </style>
 </head>
@@ -292,6 +327,14 @@ border-radius:5px;
         ⚽ Enviar Palpite
     </a>
 </div>
+
+<div class="status-palpites">
+
+    <h3>✅ Participantes que já enviaram os palpites da 2ª Rodada</h3>
+
+    <div id="listaEnviados" class="lista-enviados"></div>
+
+</div>    
 
     
 <header>
@@ -772,6 +815,37 @@ const palpites = {
 }
 
 };
+
+
+//enviou palpite
+const enviados = [
+    "Dedeco",
+    "Marcel",
+    "Juninho",
+    "Jhonata Davison"
+];
+
+function atualizarParticipantesEnviados(){
+
+    const lista =
+        document.getElementById("listaEnviados");
+
+    lista.innerHTML = "";
+
+    enviados.forEach(nome => {
+
+        lista.innerHTML += `
+            <span class="participante enviado">
+                ${nome}
+            </span>
+        `;
+
+    });
+
+}
+
+atualizarParticipantesEnviados();
+    
 
 function calcularPontos(nome){
 
