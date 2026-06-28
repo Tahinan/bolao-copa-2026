@@ -784,12 +784,30 @@ const palpites = {
   }
 };
 
-//enviou palpite
 const enviados = [
-  "Luis Carlos"
+    "Luis Carlos"
 ];
 
 function atualizarParticipantesEnviados(){
+
+    const lista =
+        document.getElementById("listaEnviados");
+
+    lista.innerHTML = "";
+
+    enviados.forEach(nome => {
+
+        lista.innerHTML += `
+            <span class="participante enviado">
+                ${nome}
+            </span>
+        `;
+
+    });
+
+}
+
+atualizarParticipantesEnviados();
 
     
 function calcularPontos(nome){
