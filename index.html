@@ -190,6 +190,100 @@ border-radius:5px;
 }
 
 }
+
+.campeao-bolao{
+
+    max-width:900px;
+    margin:20px auto;
+
+    padding:25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+
+    background:linear-gradient(
+        135deg,
+        #fff7cc,
+        #ffd700
+    );
+
+    border:3px solid #d4af37;
+    border-radius:15px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+
+    text-align:center;
+}
+
+.trofeu{
+
+    font-size:60px;
+
+    animation:brilho 2s infinite;
+}
+
+.titulo-campeao{
+
+    font-size:16px;
+    font-weight:bold;
+    color:#7a5c00;
+
+    letter-spacing:1px;
+}
+
+.nome-campeao{
+
+    font-size:34px;
+    font-weight:bold;
+
+    color:#4d3900;
+
+    margin:8px 0;
+}
+
+.frase-campeao{
+
+    font-size:16px;
+    color:#5f4a00;
+}
+
+@keyframes brilho{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.1);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .campeao-bolao{
+
+        flex-direction:column;
+        padding:20px;
+    }
+
+    .trofeu{
+        font-size:50px;
+    }
+
+    .nome-campeao{
+        font-size:28px;
+    }
+
+}
+
+
 </style>
 </head>
 
