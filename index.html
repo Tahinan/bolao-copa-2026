@@ -191,6 +191,41 @@ border-radius:5px;
 
 }
 
+.status-palpites{
+    max-width:900px;
+    margin:20px auto;
+    padding:20px;
+
+    background:#e8f5e9;
+
+    border-left:6px solid #28a745;
+    border-radius:10px;
+}
+
+.status-palpites h3{
+    margin-top:0;
+    color:#155724;
+}
+
+.lista-enviados{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.participante{
+    background:#28a745;
+    color:white;
+
+    padding:8px 12px;
+    border-radius:20px;
+
+    font-size:14px;
+    font-weight:bold;
+}    
+
+}        
+
 .campeao-bolao{
 
     max-width:900px;
@@ -301,6 +336,16 @@ div class="alerta-prazo">
         ⚽ Enviar Palpite
     </a>
 </div>    
+
+
+<div class="status-palpites">
+
+    <h3>✅ Participantes que já enviaram os palpites da 3ª Rodada</h3>
+
+    <div id="listaEnviados" class="lista-enviados"></div>
+
+</div>     
+    
 
 <div class="campeao-bolao">
 
