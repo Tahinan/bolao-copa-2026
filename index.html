@@ -189,243 +189,14 @@ margin:4px 0;
 border-radius:5px;
 }
 
-.alerta-prazo{
-    max-width: 700px;
-    margin: 25px auto;
-
-    text-align: center;
-
-    background: #fff8d6;
-    border: 3px solid #ffc107;
-    border-radius: 16px;
-
-    padding: 25px;
-
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
-
-.alerta-icone{
-    font-size: 48px;
-    margin-bottom: 10px;
-}
-
-.alerta-prazo h2{
-    margin: 0 0 10px 0;
-    color: #856404;
-    font-size: 28px;
-}
-
-.alerta-prazo p{
-    margin: 0 0 20px 0;
-    font-size: 18px;
-    color: #5c4700;
-    line-height: 1.5;
-}
-
-.btn-palpite{
-    display: inline-block;
-
-    background: #198754;
-    color: white;
-
-    text-decoration: none;
-
-    padding: 14px 28px;
-    border-radius: 8px;
-
-    font-size: 18px;
-    font-weight: bold;
-
-    transition: all .2s ease;
-}
-
-.btn-palpite:hover{
-    transform: scale(1.05);
-}
-
-.status-palpites{
-    max-width:900px;
-    margin:20px auto;
-    padding:20px;
-
-    background:#e8f5e9;
-
-    border-left:6px solid #28a745;
-    border-radius:10px;
-}
-
-.status-palpites h3{
-    margin-top:0;
-    color:#155724;
-}
-
-.lista-enviados{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-.participante{
-    background:#28a745;
-    color:white;
-
-    padding:8px 12px;
-    border-radius:20px;
-
-    font-size:14px;
-    font-weight:bold;
-}    
-
-
-
-.campeao-bolao{
-
-    max-width:900px;
-    margin:20px auto;
-
-    padding:25px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:20px;
-
-    background:linear-gradient(
-        135deg,
-        #fff7cc,
-        #ffd700
-    );
-
-    border:3px solid #d4af37;
-    border-radius:15px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,0.15);
-
-    text-align:center;
-}
-
-.trofeu{
-
-    font-size:60px;
-
-    animation:brilho 2s infinite;
-}
-
-.titulo-campeao{
-
-    font-size:16px;
-    font-weight:bold;
-    color:#7a5c00;
-
-    letter-spacing:1px;
-}
-
-.nome-campeao{
-
-    font-size:34px;
-    font-weight:bold;
-
-    color:#4d3900;
-
-    margin:8px 0;
-}
-
-.frase-campeao{
-
-    font-size:16px;
-    color:#5f4a00;
-}
-
-@keyframes brilho{
-
-    0%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.1);
-    }
-
-    100%{
-        transform:scale(1);
-    }
-
-}
-
-@media(max-width:768px){
-
-    .campeao-bolao{
-
-        flex-direction:column;
-        padding:20px;
-    }
-
-    .trofeu{
-        font-size:50px;
-    }
-
-    .nome-campeao{
-        font-size:28px;
-    }
-
-}
-
-
 </style>
 </head>
 
 <body>
 
-<div class="alerta-prazo">
-    <div class="alerta-icone">⏰</div>
-
-    <div class="alerta-texto">
-        <strong>Prazo para envio dos palpites</strong>
-        <span>Os palpites da Segunda Fase encerram em <b>29/06/2026 às 13:59</b>.</span>
-    </div>
-
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeXbNSVjpl83PcBulXUK1QoNVWCrWRM7tEqLifUsJrRq-svow/viewform?usp=dialog" target="_blank" class="btn-palpite">
-        ⚽ Enviar Palpite
-    </a>
-</div>    
-
-
-<div class="status-palpites">
-
-    <h3>✅ Participantes que já enviaram os palpites da Segunda Fase</h3>
-
-    <div id="listaEnviados" class="lista-enviados"></div>
-
-</div>     
-    
-
-<div class="campeao-bolao">
-
-    <div class="trofeu">🏆</div>
-
-    <div class="campeao-info">
-
-        <div class="titulo-campeao">
-            Parabéns
-        </div>
-
-        <div class="nome-campeao">
-            Gleidson
-        </div>
-
-        <div class="frase-campeao">
-            Campeão da Terceira Rodada
-        </div>
-
-    </div>
-</div>
-
-
-
-
 <header>
 <h1>🏆 Bolão Copa CAIXA 2026</h1>
-<h2>🏆 Terceira Rodada</h2>
 </header>
 
 <nav>
@@ -478,43 +249,28 @@ border-radius:5px;
 
 // 👥 PARTICIPANTES
 const participantes = [
-"Dedeco","Marcel","Juninho","Jhonata Davison",
-"Tahinan","Luís Carlos","Jonathas Seixas","Daniel","Aislan","Alisson",
-"Gleidson","Mayara"
+"Luís Carlos","Marcel","Tahinan","Dedeco",
+"Dedeco","Alisson","Fernando","Daniel","Aislan","Mayara", "Jonathas Seixas"
 ];
 
 // ⚽ JOGOS
-
 const jogos = [
-  {id: 1, casa: "Suiça", fora: "Canadá", golsCasa: 2, golsFora: 1},
-  {id: 2, casa: "Bôsnia", fora: "Catar", golsCasa: 3, golsFora: 1},
-  {id: 3, casa: "Marrocos", fora: "Haiti", golsCasa: 4, golsFora: 2},
-  {id: 4, casa: "Escócia", fora: "Brasil", golsCasa: 0, golsFora: 3},
-
-  {id: 5, casa: "África do Sul", fora: "Correia do Sul", golsCasa: 1, golsFora: 0},
-  {id: 6, casa: "R. Tchéquia", fora: "México", golsCasa: 0, golsFora: 3},
-  {id: 7, casa: "Curaçao", fora: "Costa do Marfim", golsCasa: 0, golsFora: 2},
-  {id: 8, casa: "Equador", fora: "Alemanha", golsCasa: 2, golsFora: 1},
-
-  {id: 9, casa: "Tunisia", fora: "Holanda", golsCasa: 1, golsFora: 3},
-  {id: 10, casa: "Japão", fora: "Suécia", golsCasa: 1, golsFora: 1},
-  {id: 11, casa: "Turquia", fora: "EUA", golsCasa: 3, golsFora: 2},
-  {id: 12, casa: "Paraguai", fora: "Austrália", golsCasa: 0, golsFora: 0},
-
-  {id: 13, casa: "Noruega", fora: "França", golsCasa: 1, golsFora: 4},
-  {id: 14, casa: "Senegal", fora: "Iraque", golsCasa: 5, golsFora: 0},
-  {id: 15, casa: "Cabo Verde", fora: "Arábia Saudita", golsCasa: 0, golsFora: 0},
-  {id: 16, casa: "Uruguai", fora: "Espanha", golsCasa: 0, golsFora: 1},
-
-  {id: 17, casa: "Nova Zelândia", fora: "Bélgica", golsCasa: 1, golsFora: 5},
-  {id: 18, casa: "Egito", fora: "Irâ", golsCasa: 1, golsFora: 1},
-  {id: 19, casa: "Panamá", fora: "Inglaterra", golsCasa: 0, golsFora: 2},
-  {id: 20, casa: "Croácia", fora: "Gana", golsCasa: 2, golsFora: 1},
-
-  {id: 21, casa: "Colômbia", fora: "Portugal", golsCasa: 0, golsFora: 0},
-  {id: 22, casa: "RD Congo", fora: "Uzbequistão", golsCasa: 3, golsFora: 1},
-  {id: 23, casa: "Argélia", fora: "Áustria", golsCasa: 3, golsFora: 3},
-  {id: 24, casa: "Jordânia", fora: "Argentina", golsCasa: 1, golsFora: 3}
+  {id: 1, casa: "África do Sul", fora: "Canadá", golsCasa: 0, golsFora: 1},
+  {id: 2, casa: "Brasil", fora: "Japão", golsCasa: null, golsFora: null},
+  {id: 3, casa: "Alemanha", fora: "Paraguai", golsCasa: null, golsFora: null},
+  {id: 4, casa: "Holanda", fora: "Marrocos", golsCasa: null, golsFora: null},
+  {id: 5, casa: "Costa do Marfim", fora: "Noruega", golsCasa: null, golsFora: null},
+  {id: 6, casa: "França", fora: "Suécia", golsCasa: null, golsFora: null},
+  {id: 7, casa: "México", fora: "Equador", golsCasa: null, golsFora: null},
+  {id: 8, casa: "Ingleterra", fora: "RD Congo", golsCasa: null, golsFora: null},
+  {id: 9, casa: "Bélgica", fora: "Senegal", golsCasa: null, golsFora: null},
+  {id: 10, casa: "EUA", fora: "Bósnia", golsCasa: null, golsFora: null},
+  {id: 11, casa: "Espanha", fora: "Áustria", golsCasa: null, golsFora: null},
+  {id: 12, casa: "Potugal", fora: "Croácia", golsCasa: null, golsFora: null},
+  {id: 13, casa: "Suíça", fora: "Argélia", golsCasa: null, golsFora: null},
+  {id: 14, casa: "Austrália", fora: "Egito", golsCasa: null, golsFora: null},
+  {id: 15, casa: "Argentina", fora: "Cabo Verde", golsCasa: null, golsFora: null},
+  {id: 16, casa: "Colômbia", fora: "Gana", golsCasa: null, golsFora: null}
 ];
 
 // 👇 PALPITES (EDITA MANUALMENTE AQUI)
@@ -522,354 +278,197 @@ const jogos = [
 
 
 const palpites = {
-  "Dedeco": {
-    1: { casa: 2, fora: 2 },
-    2: { casa: 0, fora: 1 },
-    3: { casa: 2, fora: 0 },
-    4: { casa: 1, fora: 3 },
-    5: { casa: 2, fora: 2 },
-    6: { casa: 1, fora: 1 },
-    7: { casa: 0, fora: 2 },
-    8: { casa: 0, fora: 3 },
-    9: { casa: 1, fora: 2 },
-    10: { casa: 2, fora: 2 },
-    11: { casa: 1, fora: 1 },
-    12: { casa: 2, fora: 3 },
-    13: { casa: 1, fora: 3 },
-    14: { casa: 1, fora: 1 },
-    15: { casa: 0, fora: 1 },
-    16: { casa: 1, fora: 2 },
-    17: { casa: 0, fora: 3 },
-    18: { casa: 1, fora: 1 },
-    19: { casa: 0, fora: 2 },
-    20: { casa: 2, fora: 1 },
-    21: { casa: 2, fora: 2 },
-    22: { casa: 0, fora: 0 },
-    23: { casa: 1, fora: 2 },
-    24: { casa: 0, fora: 3 }
-  },
-  "Marcel": {
-    1: { casa: 1, fora: 2 },
-    2: { casa: 0, fora: 0 },
-    3: { casa: 2, fora: 0 },
-    4: { casa: 0, fora: 2 },
-    5: { casa: 1, fora: 2 },
-    6: { casa: 0, fora: 2 },
-    7: { casa: 1, fora: 3 },
-    8: { casa: 1, fora: 3 },
-    9: { casa: 0, fora: 4 },
-    10: { casa: 2, fora: 2 },
-    11: { casa: 0, fora: 2 },
-    12: { casa: 1, fora: 1 },
-    13: { casa: 2, fora: 3 },
-    14: { casa: 2, fora: 0 },
-    15: { casa: 2, fora: 1 },
-    16: { casa: 2, fora: 3 },
-    17: { casa: 1, fora: 2 },
-    18: { casa: 2, fora: 0 },
-    19: { casa: 0, fora: 4 },
-    20: { casa: 2, fora: 1 },
-    21: { casa: 1, fora: 2 },
-    22: { casa: 2, fora: 1 },
-    23: { casa: 1, fora: 2 },
-    24: { casa: 0, fora: 4 }
-  },
-  "Juninho": {
-    1: { casa: 0, fora: 2 },
-    2: { casa: 1, fora: 2 },
+  "Luís Carlos": {
+    1: { casa: 0, fora: 1 },
+    2: { casa: 3, fora: 1 },
     3: { casa: 3, fora: 0 },
     4: { casa: 1, fora: 2 },
-    5: { casa: 0, fora: 1 },
-    6: { casa: 1, fora: 1 },
-    7: { casa: 1, fora: 3 },
-    8: { casa: 0, fora: 3 },
-    9: { casa: 1, fora: 3 },
+    5: { casa: 3, fora: 1 },
+    6: { casa: 3, fora: 0 },
+    7: { casa: 2, fora: 1 },
+    8: { casa: 2, fora: 1 },
+    9: { casa: 2, fora: 1 },
     10: { casa: 2, fora: 1 },
-    11: { casa: 1, fora: 2 },
+    11: { casa: 2, fora: 1 },
     12: { casa: 2, fora: 0 },
-    13: { casa: 1, fora: 3 },
+    13: { casa: 1, fora: 0 },
     14: { casa: 1, fora: 0 },
-    15: { casa: 1, fora: 1 },
-    16: { casa: 1, fora: 2 },
-    17: { casa: 1, fora: 1 },
-    18: { casa: 1, fora: 0 },
-    19: { casa: 1, fora: 2 },
-    20: { casa: 2, fora: 0 },
-    21: { casa: 1, fora: 2 },
-    22: { casa: 0, fora: 0 },
-    23: { casa: 2, fora: 2 },
-    24: { casa: 0, fora: 3 }
+    15: { casa: 2, fora: 1 },
+    16: { casa: 2, fora: 1 }
   },
-  "Jhonata Davison": {
-    1: { casa: 1, fora: 2 },
-    2: { casa: 2, fora: 0 },
-    3: { casa: 3, fora: 1 },
-    4: { casa: 0, fora: 2 },
-    5: { casa: 1, fora: 3 },
-    6: { casa: 0, fora: 2 },
-    7: { casa: 1, fora: 3 },
-    8: { casa: 1, fora: 3 },
-    9: { casa: 1, fora: 3 },
-    10: { casa: 3, fora: 1 },
-    11: { casa: 0, fora: 2 },
-    12: { casa: 2, fora: 1 },
-    13: { casa: 1, fora: 3 },
-    14: { casa: 2, fora: 0 },
-    15: { casa: 2, fora: 0 },
-    16: { casa: 1, fora: 3 },
-    17: { casa: 0, fora: 2 },
-    18: { casa: 3, fora: 0 },
-    19: { casa: 0, fora: 3 },
-    20: { casa: 2, fora: 1 },
-    21: { casa: 1, fora: 2 },
-    22: { casa: 2, fora: 0 },
-    23: { casa: 2, fora: 0 },
-    24: { casa: 0, fora: 3 }
-  },
-  "Tahinan": {
-    1: { casa: 1, fora: 2 },
-    2: { casa: 0, fora: 2 },
+
+  "Marcel": {
+    1: { casa: 0, fora: 1 },
+    2: { casa: 3, fora: 1 },
     3: { casa: 3, fora: 0 },
-    4: { casa: 0, fora: 2 },
-    5: { casa: 1, fora: 1 },
-    6: { casa: 0, fora: 1 },
-    7: { casa: 1, fora: 3 },
-    8: { casa: 0, fora: 3 },
-    9: { casa: 1, fora: 3 },
+    4: { casa: 2, fora: 1 },
+    5: { casa: 1, fora: 2 },
+    6: { casa: 3, fora: 1 },
+    7: { casa: 1, fora: 0 },
+    8: { casa: 2, fora: 0 },
+    9: { casa: 1, fora: 2 },
     10: { casa: 1, fora: 0 },
-    11: { casa: 0, fora: 4 },
+    11: { casa: 3, fora: 1 },
     12: { casa: 2, fora: 2 },
-    13: { casa: 1, fora: 2 },
-    14: { casa: 2, fora: 0 },
-    15: { casa: 0, fora: 0 },
-    16: { casa: 1, fora: 0 },
-    17: { casa: 0, fora: 2 },
-    18: { casa: 2, fora: 0 },
-    19: { casa: 0, fora: 3 },
-    20: { casa: 1, fora: 0 },
-    21: { casa: 1, fora: 2 },
-    22: { casa: 0, fora: 0 },
-    23: { casa: 1, fora: 0 },
-    24: { casa: 3, fora: 1 }
+    13: { casa: 2, fora: 1 },
+    14: { casa: 0, fora: 1 },
+    15: { casa: 4, fora: 0 },
+    16: { casa: 2, fora: 1 }
   },
-  "Luís Carlos": {
-    1: { casa: 3, fora: 1 },
-    2: { casa: 1, fora: 3 },
-    3: { casa: 3, fora: 0 },
-    4: { casa: 0, fora: 3 },
-    5: { casa: 2, fora: 1 },
-    6: { casa: 1, fora: 3 },
-    7: { casa: 0, fora: 3 },
-    8: { casa: 0, fora: 4 },
-    9: { casa: 1, fora: 3 },
-    10: { casa: 3, fora: 1 },
-    11: { casa: 1, fora: 3 },
-    12: { casa: 0, fora: 3 },
-    13: { casa: 0, fora: 4 },
-    14: { casa: 3, fora: 0 },
-    15: { casa: 2, fora: 1 },
-    16: { casa: 1, fora: 3 },
-    17: { casa: 1, fora: 3 },
-    18: { casa: 3, fora: 1 },
-    19: { casa: 1, fora: 3 },
-    20: { casa: 2, fora: 1 },
-    21: { casa: 1, fora: 3 },
-    22: { casa: 2, fora: 1 },
-    23: { casa: 2, fora: 1 },
-    24: { casa: 0, fora: 4 }
-  },
-  "Jonathas Seixas": {
-    1: { casa: 2, fora: 1 },
+
+  "Tahinan": {
+    1: { casa: 0, fora: 1 },
     2: { casa: 2, fora: 1 },
-    3: { casa: 2, fora: 0 },
-    4: { casa: 0, fora: 2 },
-    5: { casa: 0, fora: 2 },
-    6: { casa: 0, fora: 2 },
-    7: { casa: 0, fora: 3 },
-    8: { casa: 0, fora: 2 },
-    9: { casa: 0, fora: 4 },
-    10: { casa: 2, fora: 1 },
-    11: { casa: 0, fora: 2 },
-    12: { casa: 1, fora: 1 },
-    13: { casa: 1, fora: 3 },
-    14: { casa: 3, fora: 0 },
-    15: { casa: 2, fora: 0 },
-    16: { casa: 1, fora: 2 },
-    17: { casa: 0, fora: 3 },
-    18: { casa: 2, fora: 1 },
-    19: { casa: 0, fora: 3 },
-    20: { casa: 2, fora: 1 },
-    21: { casa: 1, fora: 3 },
-    22: { casa: 2, fora: 0 },
-    23: { casa: 1, fora: 2 },
-    24: { casa: 0, fora: 3 }
-  },
-  "Daniel": {
-    1: { casa: 1, fora: 2 },
-    2: { casa: 1, fora: 1 },
-    3: { casa: 2, fora: 0 },
-    4: { casa: 0, fora: 2 },
-    5: { casa: 1, fora: 2 },
-    6: { casa: 0, fora: 2 },
-    7: { casa: 0, fora: 3 },
-    8: { casa: 0, fora: 3 },
-    9: { casa: 0, fora: 2 },
-    10: { casa: 2, fora: 1 },
-    11: { casa: 1, fora: 3 },
-    12: { casa: 1, fora: 0 },
-    13: { casa: 1, fora: 2 },
-    14: { casa: 3, fora: 1 },
-    15: { casa: 1, fora: 0 },
-    16: { casa: 1, fora: 2 },
-    17: { casa: 1, fora: 1 },
-    18: { casa: 2, fora: 0 },
-    19: { casa: 0, fora: 3 },
-    20: { casa: 2, fora: 1 },
-    21: { casa: 1, fora: 3 },
-    22: { casa: 0, fora: 0 },
-    23: { casa: 1, fora: 0 },
-    24: { casa: 0, fora: 2 }
-  },
-  "Aislan": {
-    1: { casa: 2, fora: 1 },
-    2: { casa: 1, fora: 1 },
-    3: { casa: 3, fora: 1 },
-    4: { casa: 1, fora: 4 },
-    5: { casa: 1, fora: 2 },
-    6: { casa: 1, fora: 2 },
-    7: { casa: 1, fora: 1 },
-    8: { casa: 3, fora: 1 },
-    9: { casa: 3, fora: 0 },
-    10: { casa: 3, fora: 1 },
-    11: { casa: 1, fora: 2 },
-    12: { casa: 1, fora: 1 },
-    13: { casa: 2, fora: 3 },
-    14: { casa: 2, fora: 0 },
-    15: { casa: 1, fora: 1 },
-    16: { casa: 1, fora: 3 },
-    17: { casa: 1, fora: 3 },
-    18: { casa: 2, fora: 1 },
-    19: { casa: 5, fora: 0 },
-    20: { casa: 2, fora: 1 },
-    21: { casa: 1, fora: 3 },
-    22: { casa: 1, fora: 1 },
-    23: { casa: 1, fora: 2 },
-    24: { casa: 4, fora: 0 }
-  },
-  "Alisson": {
-    1: { casa: 1, fora: 0 },
-    2: { casa: 0, fora: 0 },
-    3: { casa: 2, fora: 0 },
-    4: { casa: 0, fora: 2 },
-    5: { casa: 1, fora: 0 },
-    6: { casa: 0, fora: 2 },
-    7: { casa: 0, fora: 2 },
-    8: { casa: 0, fora: 2 },
-    9: { casa: 0, fora: 2 },
-    10: { casa: 2, fora: 1 },
-    11: { casa: 1, fora: 2 },
-    12: { casa: 1, fora: 0 },
+    3: { casa: 1, fora: 0 },
+    4: { casa: 1, fora: 1 },
+    5: { casa: 0, fora: 0 },
+    6: { casa: 2, fora: 0 },
+    7: { casa: 1, fora: 0 },
+    8: { casa: 2, fora: 1 },
+    9: { casa: 1, fora: 0 },
+    10: { casa: 2, fora: 0 },
+    11: { casa: 1, fora: 0 },
+    12: { casa: 0, fora: 1 },
     13: { casa: 1, fora: 1 },
-    14: { casa: 2, fora: 0 },
-    15: { casa: 0, fora: 0 },
-    16: { casa: 0, fora: 1 },
-    17: { casa: 0, fora: 1 },
-    18: { casa: 2, fora: 0 },
-    19: { casa: 0, fora: 3 },
-    20: { casa: 0, fora: 0 },
-    21: { casa: 1, fora: 1 },
-    22: { casa: 0, fora: 0 },
-    23: { casa: 1, fora: 0 },
-    24: { casa: 0, fora: 2 }
+    14: { casa: 0, fora: 2 },
+    15: { casa: 2, fora: 0 },
+    16: { casa: 2, fora: 1 }
   },
-  "Gleidson": {
-    1: { casa: 2, fora: 1 },
-    2: { casa: 1, fora: 0 },
-    3: { casa: 3, fora: 0 },
-    4: { casa: 0, fora: 2 },
-    5: { casa: 0, fora: 2 },
-    6: { casa: 0, fora: 1 },
-    7: { casa: 0, fora: 2 },
-    8: { casa: 0, fora: 1 },
-    9: { casa: 0, fora: 2 },
-    10: { casa: 1, fora: 1 },
-    11: { casa: 0, fora: 1 },
-    12: { casa: 1, fora: 0 },
-    13: { casa: 1, fora: 2 },
-    14: { casa: 2, fora: 0 },
-    15: { casa: 1, fora: 1 },
-    16: { casa: 1, fora: 2 },
-    17: { casa: 0, fora: 1 },
-    18: { casa: 1, fora: 0 },
-    19: { casa: 0, fora: 2 },
-    20: { casa: 1, fora: 2 },
-    21: { casa: 1, fora: 2 },
-    22: { casa: 1, fora: 0 },
-    23: { casa: 1, fora: 0 },
-    24: { casa: 0, fora: 2 }
-  },
-  "Mayara": {
-    1: { casa: 2, fora: 1 },
-    2: { casa: 2, fora: 1 },
-    3: { casa: 4, fora: 0 },
-    4: { casa: 0, fora: 3 },
+
+  "Dedeco": {
+    1: { casa: 0, fora: 1 },
+    2: { casa: 3, fora: 0 },
+    3: { casa: 2, fora: 1 },
+    4: { casa: 1, fora: 1 },
     5: { casa: 0, fora: 1 },
-    6: { casa: 0, fora: 2 },
-    7: { casa: 0, fora: 3 },
-    8: { casa: 1, fora: 3 },
-    9: { casa: 0, fora: 3 },
-    10: { casa: 2, fora: 1 },
-    11: { casa: 1, fora: 1 },
+    6: { casa: 3, fora: 2 },
+    7: { casa: 2, fora: 0 },
+    8: { casa: 2, fora: 1 },
+    9: { casa: 3, fora: 2 },
+    10: { casa: 1, fora: 0 },
+    11: { casa: 2, fora: 1 },
+    12: { casa: 1, fora: 1 },
+    13: { casa: 1, fora: 0 },
+    14: { casa: 1, fora: 0 },
+    15: { casa: 3, fora: 1 },
+    16: { casa: 2, fora: 0 }
+  },
+
+  "Alisson": {
+    1: { casa: 0, fora: 1 },
+    2: { casa: 2, fora: 1 },
+    3: { casa: 2, fora: 0 },
+    4: { casa: 1, fora: 1 },
+    5: { casa: 1, fora: 2 },
+    6: { casa: 3, fora: 1 },
+    7: { casa: 1, fora: 0 },
+    8: { casa: 2, fora: 0 },
+    9: { casa: 0, fora: 1 },
+    10: { casa: 3, fora: 0 },
+    11: { casa: 1, fora: 0 },
+    12: { casa: 1, fora: 2 },
+    13: { casa: 1, fora: 1 },
+    14: { casa: 0, fora: 1 },
+    15: { casa: 3, fora: 0 },
+    16: { casa: 2, fora: 0 }
+  },
+
+  "Fernando": {
+    1: { casa: 0, fora: 1 },
+    2: { casa: 2, fora: 1 },
+    3: { casa: 2, fora: 0 },
+    4: { casa: 0, fora: 1 },
+    5: { casa: 1, fora: 0 },
+    6: { casa: 2, fora: 1 },
+    7: { casa: 1, fora: 0 },
+    8: { casa: 2, fora: 0 },
+    9: { casa: 0, fora: 1 },
+    10: { casa: 1, fora: 0 },
+    11: { casa: 2, fora: 0 },
     12: { casa: 1, fora: 0 },
-    13: { casa: 1, fora: 3 },
-    14: { casa: 2, fora: 0 },
-    15: { casa: 2, fora: 1 },
-    16: { casa: 1, fora: 2 },
-    17: { casa: 0, fora: 2 },
-    18: { casa: 2, fora: 1 },
-    19: { casa: 0, fora: 3 },
-    20: { casa: 2, fora: 1 },
-    21: { casa: 1, fora: 3 },
-    22: { casa: 2, fora: 0 },
-    23: { casa: 1, fora: 1 },
-    24: { casa: 0, fora: 3 }
+    13: { casa: 1, fora: 0 },
+    14: { casa: 0, fora: 1 },
+    15: { casa: 2, fora: 0 },
+    16: { casa: 1, fora: 1 }
+  },
+
+  "Daniel": {
+    1: { casa: 0, fora: 1 },
+    2: { casa: 1, fora: 0 },
+    3: { casa: 3, fora: 1 },
+    4: { casa: 2, fora: 1 },
+    5: { casa: 2, fora: 3 },
+    6: { casa: 3, fora: 0 },
+    7: { casa: 2, fora: 1 },
+    8: { casa: 3, fora: 0 },
+    9: { casa: 2, fora: 2 },
+    10: { casa: 2, fora: 0 },
+    11: { casa: 3, fora: 1 },
+    12: { casa: 2, fora: 1 },
+    13: { casa: 2, fora: 1 },
+    14: { casa: 1, fora: 2 },
+    15: { casa: 3, fora: 0 },
+    16: { casa: 2, fora: 1 }
+  },
+
+  "Aislan": {
+    1: { casa: 0, fora: 1 },
+    2: { casa: 4, fora: 0 },
+    3: { casa: 2, fora: 0 },
+    4: { casa: 3, fora: 1 },
+    5: { casa: 1, fora: 3 },
+    6: { casa: 2, fora: 0 },
+    7: { casa: 2, fora: 0 },
+    8: { casa: 3, fora: 0 },
+    9: { casa: 2, fora: 1 },
+    10: { casa: 2, fora: 1 },
+    11: { casa: 3, fora: 0 },
+    12: { casa: 2, fora: 1 },
+    13: { casa: 2, fora: 1 },
+    14: { casa: 1, fora: 2 },
+    15: { casa: 3, fora: 0 },
+    16: { casa: 2, fora: 1 }
+  },
+
+  "Mayara": {
+    1: { casa: 0, fora: 1 },
+    2: { casa: 3, fora: 1 },
+    3: { casa: 3, fora: 0 },
+    4: { casa: 2, fora: 1 },
+    5: { casa: 2, fora: 1 },
+    6: { casa: 3, fora: 0 },
+    7: { casa: 2, fora: 1 },
+    8: { casa: 2, fora: 0 },
+    9: { casa: 0, fora: 2 },
+    10: { casa: 2, fora: 0 },
+    11: { casa: 3, fora: 0 },
+    12: { casa: 3, fora: 1 },
+    13: { casa: 2, fora: 0 },
+    14: { casa: 0, fora: 1 },
+    15: { casa: 3, fora: 0 },
+    16: { casa: 2, fora: 1 }
+  },
+
+  "Jonathas Seixas": {
+    1: { casa: 0, fora: 1 },
+    2: { casa: 2, fora: 0 },
+    3: { casa: 2, fora: 0 },
+    4: { casa: 2, fora: 1 },
+    5: { casa: 1, fora: 2 },
+    6: { casa: 3, fora: 0 },
+    7: { casa: 1, fora: 1 },
+    8: { casa: 3, fora: 0 },
+    9: { casa: 2, fora: 1 },
+    10: { casa: 1, fora: 0 },
+    11: { casa: 2, fora: 0 },
+    12: { casa: 2, fora: 1 },
+    13: { casa: 1, fora: 1 },
+    14: { casa: 1, fora: 2 },
+    15: { casa: 3, fora: 0 },
+    16: { casa: 2, fora: 1 }
   }
 };
 
-const enviados = [
-    "Luis Carlos",
-    "Marcel",
-    "Tahinan",
-    "Dedeco",
-    "Alisson",
-    "Fernando",
-    "Daniel",
-    "Aislan",
-    "Mayara"
-];
-
-function atualizarParticipantesEnviados(){
-
-    const lista =
-        document.getElementById("listaEnviados");
-
-    lista.innerHTML = "";
-
-    enviados.forEach(nome => {
-
-        lista.innerHTML += `
-            <span class="participante enviado">
-                ${nome}
-            </span>
-        `;
-
-    });
-
-}
-
-atualizarParticipantesEnviados();
-
-    
 function calcularPontos(nome){
 
 let pontos = 0;
